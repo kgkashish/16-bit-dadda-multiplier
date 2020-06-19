@@ -1,0 +1,579 @@
+///////////////
+module mul_16(a,b,z);
+
+input [15:0] a;
+input [15:0] b;
+output [31:0] z;
+
+wire c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15;
+wire d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16;
+wire e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16;
+wire f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16;
+wire g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16;
+wire h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16;
+wire i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16;
+wire j1,j2,j3,j4,j5,j6,j7,j8,j9,j10,j11,j12,j13,j14,j15,j16;
+wire k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15,k16;
+wire l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16;
+wire m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14,m15,m16;
+wire n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16;
+wire o1,o2,o3,o4,o5,o6,o7,o8,o9,o10,o11,o12,o13,o14,o15,o16;
+wire p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16;
+wire q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16;
+wire r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16;
+
+
+wire t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30;
+wire t31,t32,t33,t34,t35,t36,t37,t38,t39,t40,t41,t42,t43,t44,t45,t46,t47,t48,t49,t50,t51,t52,t53,t54,t55,t56,t57,t58,t59,t60;
+wire t61,t62,t63,t64,t65,t66,t67,t68,t69,t70,t71,t72,t73,t74,t75,t76,t77,t78,t79,t80,t81,t82,t83,t84,t85,t86,t87,t88,t89,t90;
+wire t91,t92,t93,t94,t95,t96,t97,t98,t99,t100,t101,t102,t103,t104,t105,t106,t107,t108,t109,t110,t111,t112,t113,t114,t115,t116;
+wire t117,t118,t119,t120,t121,t122,t123,t124,t125,t126,t127,t128,t129,t130,t131,t132,t133,t134,t135,t136,t137,t138,t139,t140;
+wire t141,t142,t143,t144,t145,t146,t147,t148,t149,t150,t151,t152,t153,t154,t155,t156,t157,t158,t159,t160,t161,t162,t163,t164;
+wire t165,t166,t167,t168,t169,t170,t171,t172,t173,t174,t175,t176,t177,t178,t179,t180,t181,t182,t183,t184,t185,t186,t187;
+wire t188,t189,t190,t191,t192,t193,t194,t195,t196,t197,t198,t199,t200,t201,t202,t203,t204,t205,t206,t207,t208,t209,t210;
+
+wire s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s26,s27,s28,s29,s30;
+wire s31,s32,s33,s34,s35,s36,s37,s38,s39,s40,s41,s42,s43,s44,s45,s46,s47,s48,s49,s50,s51,s52,s53,s54,s55,s56,s57,s58,s59,s60;
+wire s61,s62,s63,s64,s65,s66,s67,s68,s69,s70,s71,s72,s73,s74,s75,s76,s77,s78,s79,s80,s81,s82,s83,s84,s85,s86,s87,s88,s89,s90;
+wire s91,s92,s93,s94,s95,s96,s97,s98,s99,s100,s101,s102,s103,s104,s105,s106,s107,s108,s109,s110,s111,s112,s113,s114,s115,s116;
+wire s117,s118,s119,s120,s121,s122,s123,s124,s125,s126,s127,s128,s129,s130,s131,s132,s133,s134,s135,s136,s137,s138,s139,s140;
+wire s141,s142,s143,s144,s145,s146,s147,s148,s149,s150,s151,s152,s153,s154,s155,s156,s157,s158,s159,s160,s161,s162,s163,s164;
+wire s165,s166,s167,s168,s169,s170,s171,s172,s173,s174,s175,s176,s177,s178,s179,s180,s181,s182,s183,s184,s185,s186,s187;
+wire s188,s189,s190,s191,s192,s193,s194,s195,s196,s197,s198,s199,s200,s201,s202,s203,s204,s205,s206,s207,s208,s209,s210;
+
+
+
+//first row
+assign z[0] = a[0] & b[0];  
+assign c1 = a[1] & b[0];    
+assign c2 = a[2] & b[0];    
+assign c3 = a[3] & b[0];    
+assign c4 = a[4] & b[0];  
+assign c5 = a[5] & b[0];    
+assign c6 = a[6] & b[0];    
+assign c7 = a[7] & b[0];    
+assign c8 = a[8] & b[0];    
+assign c9 = a[9] & b[0];  
+assign c10 = a[10] & b[0];  
+assign c11 = a[11] & b[0];  
+assign c12 = a[12] & b[0];  
+assign c13 = a[13] & b[0];  
+assign c14 = a[14] & b[0];  
+assign c15 = a[15] & b[0];  
+
+//2nd row
+assign d1 = a[0] & b[1];    
+assign d2 = a[1] & b[1];    
+assign d3 = a[2] & b[1];    
+assign d4 = a[3] & b[1];    
+assign d5 = a[4] & b[1];  
+assign d6 = a[5] & b[1];    
+assign d7 = a[6] & b[1];    
+assign d8 = a[7] & b[1];    
+assign d9 = a[8] & b[1];    
+assign d10 = a[9] & b[1];  
+assign d11 = a[10] & b[1];  
+assign d12 = a[11] & b[1];  
+assign d13 = a[12] & b[1];  
+assign d14 = a[13] & b[1];  
+assign d15 = a[14] & b[1];  
+assign d16 = a[15] & b[1];  
+
+//3rd row
+assign e1 = a[0] & b[2];    
+assign e2 = a[1] & b[2];   
+assign e3 = a[2] & b[2];    
+assign e4 = a[3] & b[2];    
+assign e5 = a[4] & b[2];  
+assign e6 = a[5] & b[2];    
+assign e7 = a[6] & b[2];    
+assign e8 = a[7] & b[2];    
+assign e9 = a[8] & b[2];    
+assign e10 = a[9] & b[2];  
+assign e11 = a[10] & b[2];  
+assign e12 = a[11] & b[2];  
+assign e13 = a[12] & b[2];  
+assign e14 = a[13] & b[2];  
+assign e15 = a[14] & b[2];  
+assign e16 = a[15] & b[2];  
+
+
+//4th row
+assign f1 = a[0] & b[3];    
+assign f2 = a[1] & b[3];    
+assign f3 = a[2] & b[3];    
+assign f4 = a[3] & b[3];    
+assign f5 = a[4] & b[3];  
+assign f6 = a[5] & b[3];    
+assign f7 = a[6] & b[3];    
+assign f8 = a[7] & b[3];    
+assign f9 = a[8] & b[3];    
+assign f10 = a[9] & b[3];  
+assign f11 = a[10] & b[3];  
+assign f12 = a[11] & b[3];  
+assign f13 = a[12] & b[3];  
+assign f14 = a[13] & b[3];  
+assign f15 = a[14] & b[3];  
+assign f16 = a[15] & b[3];  
+
+
+//5th row
+assign g1 = a[0] & b[4];    assign g2 = a[1] & b[4];    assign g3 = a[2] & b[4];    assign g4 = a[3] & b[4];    assign g5 = a[4] & b[4];  
+assign g6 = a[5] & b[4];    assign g7 = a[6] & b[4];    assign g8 = a[7] & b[4];    assign g9 = a[8] & b[4];    assign g10 = a[9] & b[4];  
+assign g11 = a[10] & b[4];  assign g12 = a[11] & b[4];  assign g13 = a[12] & b[4];  assign g14 = a[13] & b[4];  assign g15 = a[14] & b[4];  
+assign g16 = a[15] & b[4];  
+
+
+//6th row
+assign h1 = a[0] & b[5];    assign h2 = a[1] & b[5];    assign h3 = a[2] & b[5];    assign h4 = a[3] & b[5];    assign h5 = a[4] & b[5];  
+assign h6 = a[5] & b[5];    assign h7 = a[6] & b[5];    assign h8 = a[7] & b[5];    assign h9 = a[8] & b[5];    assign h10 = a[9] & b[5];  
+assign h11 = a[10] & b[5];  assign h12 = a[11] & b[5];  assign h13 = a[12] & b[5];  assign h14 = a[13] & b[5];  assign h15 = a[14] & b[5];  
+assign h16 = a[15] & b[5];  
+
+
+//7th row
+assign i1 = a[0] & b[6];    assign i2 = a[1] & b[6];    assign i3 = a[2] & b[6];    assign i4 = a[3] & b[6];    assign i5 = a[4] & b[6];  
+assign i6 = a[5] & b[6];    assign i7 = a[6] & b[6];    assign i8 = a[7] & b[6];    assign i9 = a[8] & b[6];    assign i10 = a[9] & b[6];  
+assign i11 = a[10] & b[6];  assign i12 = a[11] & b[6];  assign i13 = a[12] & b[6];  assign i14 = a[13] & b[6];  assign i15 = a[14] & b[6];  
+assign i16 = a[15] & b[6];  
+
+
+//8th row
+assign j1 = a[0] & b[7];    assign j2 = a[1] & b[7];    assign j3 = a[2] & b[7];    assign j4 = a[3] & b[7];    assign j5 = a[4] & b[7];  
+assign j6 = a[5] & b[7];    assign j7 = a[6] & b[7];    assign j8 = a[7] & b[7];    assign j9 = a[8] & b[7];    assign j10 = a[9] & b[7];  
+assign j11 = a[10] & b[7];  assign j12 = a[11] & b[7];  assign j13 = a[12] & b[7];  assign j14 = a[13] & b[7];  assign j15 = a[14] & b[7];  
+assign j16 = a[15] & b[7];  
+
+
+
+//9th row
+assign k1 = a[0] & b[8];    assign k2 = a[1] & b[8];    assign k3 = a[2] & b[8];    assign k4 = a[3] & b[8];    assign k5 = a[4] & b[8];  
+assign k6 = a[5] & b[8];    assign k7 = a[6] & b[8];    assign k8 = a[7] & b[8];    assign k9 = a[8] & b[8];    assign k10 = a[9] & b[8];  
+assign k11 = a[10] & b[8];  assign k12 = a[11] & b[8];  assign k13 = a[12] & b[8];  assign k14 = a[13] & b[8];  assign k15 = a[14] & b[8];  
+assign k16 = a[15] & b[8];  
+
+
+//10th row
+assign l1 = a[0] & b[9];    assign l2 = a[1] & b[9];    assign l3 = a[2] & b[9];    assign l4 = a[3] & b[9];    assign l5 = a[4] & b[9];  
+assign l6 = a[5] & b[9];    assign l7 = a[6] & b[9];    assign l8 = a[7] & b[9];    assign l9 = a[8] & b[9];    assign l10 = a[9] & b[9];  
+assign l11 = a[10] & b[9];  assign l12 = a[11] & b[9];  assign l13 = a[12] & b[9];  assign l14 = a[13] & b[9];  assign l15 = a[14] & b[9];  
+assign l16 = a[15] & b[9];  
+
+
+
+//11th row
+assign m1 = a[0] & b[10];    
+assign m2 = a[1] & b[10];    
+assign m3 = a[2] & b[10];    
+assign m4 = a[3] & b[10];    
+assign m5 = a[4] & b[10];  
+assign m6 = a[5] & b[10];    
+assign m7 = a[6] & b[10];    
+assign m8 = a[7] & b[10];    
+assign m9 = a[8] & b[10];    
+assign m10 = a[9] & b[10];  
+assign m11 = a[10] & b[10];  
+assign m12 = a[11] & b[10];  
+assign m13 = a[12] & b[10];  
+assign m14 = a[13] & b[10];  
+assign m15 = a[14] & b[10];  
+assign m16 = a[15] & b[10];  
+
+
+//12th row
+assign n1 = a[0] & b[11];    assign n2 = a[1] & b[11];    assign n3 = a[2] & b[11];    assign n4 = a[3] & b[11];    assign n5 = a[4] & b[11];  
+assign n6 = a[5] & b[11];    assign n7 = a[6] & b[11];    assign n8 = a[7] & b[11];    assign n9 = a[8] & b[11];    assign n10 = a[9] & b[11];  
+assign n11 = a[10] & b[11];  assign n12 = a[11] & b[11];  assign n13 = a[12] & b[11];  assign n14 = a[13] & b[11];  assign n15 = a[14] & b[11];  
+assign n16 = a[15] & b[11];  
+
+
+//13th row
+assign o1 = a[0] & b[12];    assign o2 = a[1] & b[12];    assign o3 = a[2] & b[12];    assign o4 = a[3] & b[12];    assign o5 = a[4] & b[12];  
+assign o6 = a[5] & b[12];    assign o7 = a[6] & b[12];    assign o8 = a[7] & b[12];    assign o9 = a[8] & b[12];    assign o10 = a[9] & b[12];  
+assign o11 = a[10] & b[12];  assign o12 = a[11] & b[12];  assign o13 = a[12] & b[12];  assign o14 = a[13] & b[12];  assign o15 = a[14] & b[12];  
+assign o16 = a[15] & b[12];  
+
+
+//14th rpw
+assign p1 = a[0] & b[13];    assign p2 = a[1] & b[13];    assign p3 = a[2] & b[13];    assign p4 = a[3] & b[13];    assign p5 = a[4] & b[13];  
+assign p6 = a[5] & b[13];    assign p7 = a[6] & b[13];    assign p8 = a[7] & b[13];    assign p9 = a[8] & b[13];    assign p10 = a[9] & b[13];  
+assign p11 = a[10] & b[13];  assign p12 = a[11] & b[13];  assign p13 = a[12] & b[13];  assign p14 = a[13] & b[13];  assign p15 = a[14] & b[13];  
+assign p16 = a[15] & b[13];  
+
+
+//15th rqw
+assign q1 = a[0] & b[14];    assign q2 = a[1] & b[14];    assign q3 = a[2] & b[14];    assign q4 = a[3] & b[14];    assign q5 = a[4] & b[14];  
+assign q6 = a[5] & b[14];    assign q7 = a[6] & b[14];    assign q8 = a[7] & b[14];    assign q9 = a[8] & b[14];    assign q10 = a[9] & b[14];  
+assign q11 = a[10] & b[14];  assign q12 = a[11] & b[14];  assign q13 = a[12] & b[14];  assign q14 = a[13] & b[14];  assign q15 = a[14] & b[14];  
+assign q16 = a[15] & b[14];  
+
+
+
+//8th rrw
+assign r1 = a[0] & b[15];    assign r2 = a[1] & b[15];    assign r3 = a[2] & b[15];    assign r4 = a[3] & b[15];    assign r5 = a[4] & b[15];  
+assign r6 = a[5] & b[15];    assign r7 = a[6] & b[15];    assign r8 = a[7] & b[15];    assign r9 = a[8] & b[15];    assign r10 = a[9] & b[15];  
+assign r11 = a[10] & b[15];  assign r12 = a[11] & b[15];  assign r13 = a[12] & b[15];  assign r14 = a[13] & b[15];  assign r15 = a[14] & b[15];  
+assign r16 = a[15] & b[15];  
+
+
+
+
+
+
+Half_Adder Half_Adder_1(c12,d12,s1,t1);
+Full_Adder maa2(c13,d13,e12,s2,t2);
+Half_Adder Half_Adder_2(f11,g10,s3,t3);
+Half_Adder Half_Adder_3(i9,j8,s4,t4);
+Full_Adder Half_Adder_4(f12,g11,h10,s5,t5);
+Full_Adder maa3(c14,d14,e13,s6,t6);
+
+Half_Adder Half_Adder_5(l7,m6,s7,t7);
+Full_Adder maa4(i10,j9,k8,s8,t8);
+
+Full_Adder maa5(f13,g12,h11,s9,t9);
+Full_Adder maa6(c15,d15,e14,s10,t10);
+
+Half_Adder maa7(m7,n6,s11,t11);
+Full_Adder maa8(l8,k9,j10,s12,t12);
+Full_Adder maa9(i11,h12,g13,s13,t13);
+
+Full_Adder maa11(f14,e15,d16,s14,t14);
+Full_Adder maa12(k10,l9,m8,s15,t15);
+Full_Adder m1a3(h13,i12,j11,s16,t16);
+
+Full_Adder m1a4(g14,f15,e16,s17,t17);
+Full_Adder m1a5(k11,j12,i13,s18,t18);
+Full_Adder m1a6(h14,g15,f16,s19,t19);
+Full_Adder m1a0(i14,h15,g16,s20,t20);
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Half_Adder Half_Adder_6(c9,d9,s21,t21);
+Half_Adder Half_Adder_7(f8,g7,s22,t22);
+Full_Adder m1a7(c10,d10,e9,s23,t23);
+
+Half_Adder Half_Adder_8(j5,i6,s24,t24);
+
+
+Full_Adder m20(h7,g8,f9,s25,t25);
+Full_Adder m21(e10,d11,c11,s26,t26);
+Full_Adder m22(l4,k5,j6,s27,t27);
+Full_Adder m23(i7,h8,g9,s28,t28);
+
+Full_Adder m24(f10,e11,s1,s29,t29);
+Full_Adder m25(m4,l5,k6,s30,t30);
+Full_Adder m26(j7,i8,h9,s31,t31);
+Full_Adder m27(t1,s2,s3,s32,t32);
+
+Full_Adder m28(n4,m5,l6,s33,t33);
+Full_Adder m29(k7,t2,t3,s34,t34);
+Full_Adder m30(s4,s5,s6,s35,t35);
+Full_Adder m31(o4,n5,s7,s36,t36);
+Full_Adder m32(s8,s9,s10,s37,t37);
+
+
+Full_Adder ma32(t4,t5,t6,s38,t38);
+Full_Adder m33(o5,t7,t8,s39,t39);
+Full_Adder m34(t9,t10,s11,s40,t40);
+Full_Adder m35(s12,s13,s14,s41,t41);
+Full_Adder m36(o6,n7,t11,s42,t42);
+
+Full_Adder m37(t12,t13,t14,s43,t43);
+Full_Adder m38(s15,s16,s17,s44,t44);
+Full_Adder m39(o7,n8,m9,s45,t45);
+Full_Adder m40(l10,t15,t16,s46,t46);
+Full_Adder m41(t17,s18,s19,s47,t47);
+
+Full_Adder m42(o8,n9,m10,s48,t48);
+Full_Adder m43(l11,t18,t19,s49,t49);
+Full_Adder m44(s20,k12,j13,s50,t50);
+Full_Adder m45(m11,n10,o9,s51,t51);
+Full_Adder m46(k13,l12,t20,s52,t52);
+
+Full_Adder m47(j14,i15,h16,s53,t53);
+Full_Adder m48(n11,m12,l13,s54,t54);
+Full_Adder m49(k14,j15,i16,s55,t55);
+Full_Adder m50(l14,k15,j16,s56,t56);
+
+////////////////////////////////////////////////////////////////////////////////////
+
+Half_Adder Half_Adder_9(c6,d6,s57,t57);
+
+Half_Adder Half_Adder_10(f5,g4,s58,t58);
+Full_Adder m52(e6,d7,c7,s59,t59);
+Half_Adder Half_Adder_11(j2,i3,s60,t60);
+Full_Adder m54(h4,g5,f6,s61,t61);
+
+Full_Adder m55(e7,d8,c8,s62,t62);
+Full_Adder m56(l1,k2,j3,s63,t63);
+Full_Adder m57(i4,h5,g6,s64,t64);
+Full_Adder m58(f8,e8,s21,s65,t65);
+
+Full_Adder m59(m1,l2,k3,s66,t66);
+Full_Adder m60(j4,i5,h6,s67,t67);
+Full_Adder m61(t21,s22,s23,s68,t68);
+Full_Adder m53(n1,m2,l3,s69,t69);
+
+Full_Adder m62(k4,t22,t23,s70,t70);
+Full_Adder m63(s24,s25,s26,s71,t71);
+Full_Adder m64(o1,n2,m3,s72,t72);
+
+Full_Adder m65(t24,t25,t26,s73,t73);
+Full_Adder m66(s27,s28,s29,s74,t74);
+Full_Adder m67(p1,o2,n3,s75,t75);
+
+Full_Adder m68(t27,t28,t29,s76,t76);
+Full_Adder m69(s30,s31,s32,s77,t77);
+Full_Adder m70(q1,p2,o3,s78,t78);
+
+
+Full_Adder m71(t30,t31,t32,s79,t79);
+Full_Adder m72(s33,s34,s35,s80,t80);
+
+
+Full_Adder m73(r1,q2,p3,s81,t81);
+Full_Adder m740(t33,t34,t35,s82,t82);
+
+Full_Adder m75(s36,s37,s38,s83,t83);
+Full_Adder m76(r2,q3,p4,s84,t84);
+
+Full_Adder m77(t36,t37,t38,s85,t85);
+
+Full_Adder m78(s39,s40,s41,s86,t86);
+Full_Adder Full_Adder79(r3,q4,p5,s87,t87);
+
+Full_Adder Full_Adder81(t39,t40,t41,s88,t88);
+
+Full_Adder m79(s42,s43,s44,s89,t89);
+Full_Adder m80(p6,q5,r4,s90,t90);
+
+Full_Adder m81(t42,t43,t44,s91,t91);
+
+Full_Adder m82(s45,s46,s47,s92,t92);
+Full_Adder Half_Adder_102(p7,q6,r5,s93,t93);
+
+Full_Adder m83(t45,t46,t47,s94,t94);
+Full_Adder Full_Adder_12(s48,s49,s50,s95,t95);
+
+Full_Adder m84(p8,q7,r6,s96,t96);
+Full_Adder m85(t48,t49,t50,s97,t97);
+
+Full_Adder m86(s51,s52,s53,s98,t98);
+Full_Adder m87(p9,q8,r7,s99,t99);
+
+Full_Adder m88(t52,t51,o10,s100,t100);
+Full_Adder m89(t53,s54,s55,s101,t101);
+
+Full_Adder m90(p10,q9,r8,s102,t102);
+Full_Adder m91(m13,n12,o11,s103,t103);
+Full_Adder fam_112(t54,t55,s56,s104,t104);
+
+Full_Adder m92(p11,q10,r9,s105,t105);
+Full_Adder m93(m14,n13,o12,s106,t106);
+Full_Adder m94(l15,k16,t56,s107,t107);
+
+Full_Adder m95(q11,p12,o13,s108,t108);
+Full_Adder m96(l16,m15,n14,s109,t109);
+Full_Adder m97(m16,n15,o14,s110,t110);
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Half_Adder h_m98(c4,d4,s111,t111);
+Half_Adder h_m99(f3,g2,s112,t112);
+Full_Adder m100(e4,d5,c5,s113,t113);
+
+Full_Adder m101(i1,h2,g3,s114,t114);
+Full_Adder m102(f4,e5,s57,s115,t115);
+Full_Adder m103(h3,i2,j1,s116,t116);
+Full_Adder Full_Adder_15(t57,s58,s59,s117,t117);
+
+Full_Adder m104(k1,t58,t59,s118,t118);
+Full_Adder m105(s60,s61,s62,s119,t119);
+Full_Adder m106(t60,t61,t62,s120,t120);
+
+Full_Adder m107(s63,s64,s65,s121,t121);
+Full_Adder m108(t63,t64,t65,s122,t122);
+Full_Adder m109(s66,s67,s68,s123,t123);
+
+Full_Adder m110(t66,t67,t68,s124,t124);
+Full_Adder m111(s69,s70,s71,s125,t125);
+Full_Adder m112(t69,t70,t71,s126,t126);
+
+Full_Adder m113(s72,s73,s74,s127,t127);
+Full_Adder m114(t72,t73,t74,s128,t128);
+Full_Adder Half_Adder_111(s75,s76,s77,s129,t129);
+
+Full_Adder m115(t75,t76,t77,s130,t130);
+Full_Adder m116(s78,s79,s80,s131,t131);
+Full_Adder m1156(t78,t79,t80,s132,t132);
+Full_Adder fHalf_Adder_1(s81,s82,s83,s133,t133);
+
+Full_Adder m117(t81,t82,t83,s134,t134);
+Full_Adder m118(s84,s85,s86,s135,t135);
+Full_Adder fFull_Adder_1(t84,t85,t86,s136,t136);
+
+Full_Adder m119(s87,s88,s89,s137,t137);
+Full_Adder m120(t87,t88,t89,s138,t138);
+
+Full_Adder m121(s90,s91,s92,s139,t139);
+Full_Adder m122(t90,t91,t92,s140,t140);
+
+Full_Adder m123(s93,s94,s95,s141,t141);
+Full_Adder m124(t93,t94,t95,s142,t142);
+
+Full_Adder m125(s96,s97,s98,s143,t143);
+
+Full_Adder m126(t96,t97,t98,s144,t144);
+
+Full_Adder m127(s99,s100,s101,s145,t145);
+
+Full_Adder m128(t99,t100,t101,s146,t146);
+
+Full_Adder Full_Adder_17(s102,s103,s104,s147,t147);
+
+Full_Adder Full_Adder_19(t102,t103,t104,s148,t148);
+
+Full_Adder a_41(s105,s106,s107,s149,t149);
+
+Full_Adder m129(t105,t106,r10,s150,t150);
+Full_Adder m130(t107,s108,s109,s151,t151);
+Full_Adder m131(p13,q12,r11,s152,t152);
+Full_Adder m132(t108,t109,s110,s153,t153);
+Full_Adder m133(p14,q13,r12,s154,t154);
+Full_Adder m134(o15,n16,t110,s155,t155);
+Full_Adder m135(o16,p15,q14,s156,t156);
+
+///////////////////////////////////////////////////
+Half_Adder Half_Adder_136(c3,d3,s157,t157);
+Full_Adder m137(s111,e3,f2,s158,t158);
+Full_Adder m138(t111,s112,s113,s159,t159);
+Full_Adder m139(t113,s114,s115,s160,t160);
+Full_Adder m140(t115,s116,s117,s161,t161);
+Full_Adder m141(t117,s118,s119,s162,t162);
+Full_Adder m142(t119,s120,s121,s163,t163);
+Full_Adder m143(t121,s122,s123,s164,t164);
+Full_Adder m144(t123,s124,s125,s165,t165);
+
+Full_Adder m145(t125,s126,s127,s166,t166);
+Full_Adder m146(t127,s128,s129,s167,t167);
+Full_Adder m147(t129,s130,s131,s168,t168);
+Full_Adder m148(t131,s132,s133,s169,t169);
+Full_Adder m149(t133,s134,s135,s170,t170);
+Full_Adder m150(t135,s136,s137,s171,t171);
+Full_Adder m151(t137,s138,s139,s172,t172);
+Full_Adder m152(t139,s140,s141,s173,t173);
+Full_Adder m153(t141,s142,s143,s174,t174);
+Full_Adder m154(t143,s144,s145,s175,t175);
+Full_Adder m155(t145,s146,s147,s176,t176);
+Full_Adder m156(t147,s148,s149,s177,t177);
+Full_Adder m157(t149,s150,s151,s178,t178);
+Full_Adder m158(t151,s152,s153,s179,t179);
+Full_Adder m159(t153,s154,s155,s180,t180);
+Full_Adder m160(t155,s156,r13,s181,t181);
+Full_Adder m161(r14,q15,p16,s182,t182);
+
+///////////////////////////////////////////////////////////
+Half_Adder Half_Adder_162(c2,d2,s183,t183);
+Full_Adder m163(s157,e2,f1,s184,t184);
+Full_Adder m164(s158,t157,g1,s185,t185);
+Full_Adder m165(s159,t158,h1,s186,t186);
+Full_Adder m166(s160,t159,t112,s187,t187);
+Full_Adder m167(s161,t160,t114,s188,t188);
+Full_Adder m168(s162,t161,t116,s189,t189);
+Full_Adder m169(s163,t162,t118,s190,t190);
+Full_Adder m170(s164,t163,t120,s191,t191);
+Full_Adder m171(s165,t164,t122,s192,t192);
+Full_Adder m1712(s166,t165,t124,s193,t193);
+Full_Adder m1722(s167,t166,t126,s194,t194);
+Full_Adder m1732(s168,t167,t128,s195,t195);
+Full_Adder m1742(s169,t168,t130,s196,t196);
+Full_Adder m1752(s170,t169,t132,s197,t197);
+
+Full_Adder m1762(s171,t170,t134,s198,t198);
+Full_Adder m1772(s172,t171,t136,s199,t199);
+Full_Adder m1782(s173,t172,t138,s200,t200);
+Full_Adder m1792(s174,t173,t140,s201,t201);
+Full_Adder m1729(s175,t174,t142,s202,t202);
+Full_Adder m1728(s176,t175,t144,s203,t203);
+
+Full_Adder m1727(s177,t176,t146,s204,t204);
+Full_Adder m1726(s178,t177,t148,s205,t205);
+Full_Adder m1725(s179,t178,t150,s206,t206);
+Full_Adder m1724(s180,t179,t152,s207,t207);
+
+Full_Adder m1723(s181,t180,t154,s208,t208);
+Full_Adder m172552(s182,t181,t156,s209,t209);
+Full_Adder m1721(r15,q16,t182,s210,t210);
+
+////////////////////////////////////////////////////
+
+wire t01,t02,t03,t04,t05,t06,t07,t08,t09,t010,t011,t012,t013,t014,t015,t016,t017,t018,t019,t020,t021,t022,t023,t024,t025,t026,t027,t028,t029;
+
+Half_Adder jk_m1173(c1,d1,z[1],t01);
+Full_Adder m11174(s183,e1,t01,z[2],t02);
+Full_Adder m11725(s184,t183,t02,z[3],t03);
+Full_Adder m11736(s185,t184,t03,z[4],t04);
+
+
+Full_Adder m11745(s186,t185,t04,z[5],t05);
+Full_Adder m11746(s187,t186,t05,z[6],t06);
+
+
+Full_Adder m117445(s188,t187,t06,z[7],t07);
+Full_Adder m11576(s189,t188,t07,z[8],t08);
+
+Full_Adder m11765(s190,t189,t08,z[9],t09);
+Full_Adder m11776(s191,t190,t09,z[10],t010);
+
+Full_Adder m11785(s192,t191,t010,z[11],t011);
+Full_Adder m11786(s193,t192,t011,z[12],t012);
+
+Full_Adder m11775(s194,t193,t012,z[13],t013);
+Full_Adder m11676(s195,t194,t013,z[14],t014);
+
+Full_Adder m11675(s196,t195,t014,z[15],t015);
+Full_Adder m15176(s197,t196,t015,z[16],t016);
+Full_Adder m17175(s198,t197,t016,z[17],t017);
+Full_Adder m51176(s199,t198,t017,z[18],t018);
+
+Full_Adder m156175(s200,t199,t018,z[19],t019);
+Full_Adder m115676(s201,t200,t019,z[20],t020);
+
+
+
+Full_Adder m1562175(s202,t201,t020,z[21],t021);
+Full_Adder m1176(s203,t202,t021,z[22],t022);
+Full_Adder m1175535(s204,t203,t022,z[23],t023);
+Full_Adder m117866(s205,t204,t023,z[24],t024);
+
+Full_Adder m117589(s206,t205,t024,z[25],t025);
+Full_Adder m117684(s207,t206,t025,z[26],t026);
+
+
+Full_Adder m1176741(s208,t207,t026,z[27],t027);
+
+Full_Adder m11757412(s209,t208,t027,z[28],t028);
+Full_Adder m11769852(s210,t209,t028,z[29],t029);
+
+Full_Adder m11176(r16,t210,t029,z[30],z[31]);
+
+endmodule
+
+
+module Full_Adder(x,y,cin,s,cout);
+input x,y,cin;
+output s, cout;
+
+wire c_1,c_2,c_3;
+Half_Adder h1 (x,y,c_1,c_2);
+Half_Adder h2 (c_1,cin,s,c_3);
+or o1(cout,c_2,c_3);
+endmodule
+
+
+module Half_Adder(a,b,sum,c_out);
+input a,b;
+output sum, c_out;
+xor xo1(sum,a,b);
+and a0(c_out,a,b);
+endmodule
